@@ -1,0 +1,9 @@
+In testing the single-threaded versus the Fork/Join framework implementation for calculating directory size, 
+the observed difference in execution times (0ms for single-threaded and 1ms for Fork/Join) is minimal and 
+may not accurately reflect the benefits of parallelism for small-scale tasks. The Fork/Join framework introduces 
+overhead due to task management and is more suited for larger, computationally intensive tasks that can be 
+effectively divided into subtasks for parallel processing. The effectiveness of this framework is also dependent 
+on system hardware, particularly benefiting from multiple processors or cores. For small directories or tasks 
+that complete quickly, this overhead might negate the potential speed benefits. To truly gauge the Fork/Join 
+framework's efficiency, it would be more appropriate to test with significantly larger directories, where the 
+task's complexity could leverage the framework's parallel processing capabilities more effectively.

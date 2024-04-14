@@ -1,0 +1,22 @@
+
+The observed difference in the character counts between the multithreaded (6,488,347) and single-threaded (6,488,350) versions is likely due to the way the file is divided among threads in the multithreaded version. This division can cause boundary issues where a character might be missed at the end of one thread's segment and not picked up at the start of another's, especially if characters fall exactly on or near the division points. Additionally, the handling of characters that require more than one byte could potentially contribute to discrepancies if not properly accounted for across thread boundaries. 
+
+This minor difference, though small, underscores the challenges in implementing parallel processing tasks for operations as simple as counting characters. Ensuring that no data is missed or double-counted at the boundaries between chunks processed by different threads requires careful consideration and potentially more complex logic than used in this basic example.
+
+Before running the Java programs, it's necessary to compile the .java files. Open a terminal in the directory containing the files and use the javac command, like so:
+
+For the single-threaded version:
+javac CharCounterWithoutThreads.java
+
+For the multithreaded version:
+javac CharCounterWithThreads.java
+
+After compilation, execute the programs with the java command. Include the class name and required arguments. For example:
+
+Single-threaded version (pass the path to your input file):
+java CharCounterWithoutThreads input.txt
+
+Multithreaded version (pass the path to your input file and the number of threads):
+java CharCounterWithThreads input.txt 4
+
+Replace 'input.txt' with the actual file path and adjust the number of threads as necessary for the multithreaded version.
